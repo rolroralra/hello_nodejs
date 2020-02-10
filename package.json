@@ -18,6 +18,7 @@
   "homepage": "https://github.com/rolroralra/hello_nodejs#readme",
   "dependencies": {
     "clog": "^0.1.6",
-    "node-static": "^0.7.11"
+    "node-static": "^0.7.11",
+    "tracer": "^1.0.2"
   }
 }

@@ -11,3 +11,11 @@ clog.debug('clog.debug');
 clog.info('clog.info');
 clog.warn('clog.warn');
 clog.error('clog.error');
+
+var tracer = require('tracer').colorConsole();
+tracer.log('tracer.log');
+tracer.debug('tracer.debug');
+tracer.info('tracer.info');
+tracer.warn('tracer.warn');
+tracer.error('tracer.error');
+tracer.trace('tracer.trace');
