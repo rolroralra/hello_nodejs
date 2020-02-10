@@ -1,0 +1,23 @@
+{
+  "name": "nodelab",
+  "version": "1.0.0",
+  "description": "Hello Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolroralra/hello_nodejs.git"
+  },
+  "author": "rolroralra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolroralra/hello_nodejs/issues"
+  },
+  "homepage": "https://github.com/rolroralra/hello_nodejs#readme",
+  "dependencies": {
+    "clog": "^0.1.6",
+    "node-static": "^0.7.11"
+  }
+}

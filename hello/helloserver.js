@@ -5,7 +5,7 @@ const httpserver = http.createServer(function(req, res) {
   // res.writeHead(200);
   // res.end('<h1>Hello HTTP Server</h1>');
   console.log(req.method, req.url, req.httpVersion);
-  console.log(req.headers);
+  console.log(renps q.headers);
 
   var filename = req.url.substring(1);
   // 1. 동기화 방식 함수 호출
