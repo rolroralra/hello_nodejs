@@ -4,6 +4,8 @@
   "description": "Hello Node.js",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon ./hello/helloserver.js",
+    "start2": "nodemon ./hello/helloserver2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

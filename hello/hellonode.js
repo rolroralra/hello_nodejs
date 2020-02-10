@@ -4,9 +4,6 @@ function hello(msg) {
 
 console.log(hello('Node'));
 
-var http = require('http');
-var options = {
-  'host': 'localhost',
-  'port': 80,
-  'path': /?file=main'
-}
+// require 메서드의 리턴값으로 사용됨!
+// module.export = {}; // Default
+module.exports = hello;
