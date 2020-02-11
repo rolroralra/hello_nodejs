@@ -11,5 +11,6 @@ process.on('message', (data) => {
 
 setTimeout(() => {
   // process.exit(0);
-  undefined_function();
+  // undefined_function();
 }, 1000);
+

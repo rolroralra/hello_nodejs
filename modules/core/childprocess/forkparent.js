@@ -17,19 +17,27 @@ function init() {
     console.log('From Child : ' + data);
   });
 
+  child.on('error', function(error) {
+    console.log('From Child : ' + error);
+    process.stdin.off('data');
+    // child.channel.close();
+    child.kill();
+  })
+
   process.stdin.on('data', (data) => {
     child.send(data.toString());
   });
 }
 
 
-
-
+child.on('close', function(code) {
+  process.exit(1);
+});
 child.on('exit', function(exitCode) {
   if (!exitCode) {
     console.log('Child Process Error Thorwn!');
-    child.kill(0);
-    child = childProcess.fork('forkchild.js');
-    init();
+    // child.kill(0);
+    // child = childProcess.fork('forkchild.js');
+    // init();
   }
 });

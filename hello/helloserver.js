@@ -11,7 +11,7 @@ const httpserver = http.createServer(function(req, res) {
   // res.writeHead(200);
   // res.end('<h1>Hello HTTP Server</h1>');
   console.log(req.method, req.url, req.httpVersion);
-  console.log(req.headers);
+  // console.log(req.headers);
 
 
   // 현재 실행된 모듈 기반 __dirname을 통해서 절대경로 설정
@@ -44,5 +44,5 @@ const httpserver = http.createServer(function(req, res) {
 
 var port = process.argv[2] || 80;
 httpserver.listen(port, function() {
-  console.log(__filename + '\nServer Init Complete!');
+  console.log(__filename + '\nServer Running Complete!');
 });
