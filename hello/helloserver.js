@@ -35,12 +35,14 @@ const httpserver = http.createServer(function(req, res) {
       res.writeHead(404);
       res.end('<h1>' + hello(req.url) + ' Not Found!</h1>');
     } else {
+      console.log(data.toString());
       res.writeHead(200);
       res.end(data);
     }
   });
 });
 
-httpserver.listen(80, function() {
+var port = process.argv[2] || 80;
+httpserver.listen(port, function() {
   console.log(__filename + '\nServer Init Complete!');
 });
