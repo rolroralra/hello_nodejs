@@ -17,13 +17,14 @@ function init() {
     console.log('From Child : ' + data);
   });
 
-  child.on('error', function(error) {
-    console.log('From Child : ' + error);
-    process.stdin.off('data');
-    // child.channel.close();
-    child.kill();
-  })
+  // child.on('error', function(error) {
+  //   console.log('From Child : ' + error);
+  //   process.stdin.off('data');
+  //   // child.channel.close();
+  //   child.kill();
+  // })
 
+  // stdin -> Parent -> Child
   process.stdin.on('data', (data) => {
     child.send(data.toString());
   });
