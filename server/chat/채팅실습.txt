@@ -12,3 +12,12 @@ step3{
   - middleware/static.js: static 자원 응답
   - middleware/logger.js: 로깅
 }
+
+step4{
+  - connect 미들웨어 컨테이너 사용
+  - middleware를 connect 용으로 수정
+}
+
+step5 {
+  - 동적인 자원 요청 처리 (routes 추가)
+}

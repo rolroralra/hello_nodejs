@@ -16,20 +16,25 @@ function staticServer(req, res, next) {
   var filename = path.join(base, pathname);
   // mime@2.x.x
   var mimeType = mime.getType(filename);
+
   fs.stat(filename, function(err, status) {
     if (err) {
-      res.writeHead(404, {'Content-Type': 'text/html; charset=utf-8'});
-      res.end('<h1>' + req.url + ' Not Found! 해당 파일이 없습니다.</h1>');
+      var err = new Error('Static Resource Read Failed!');
+      err.status = 500;
+      next(err);
     }
     else if (status.isFile()) {
       res.writeHead(200, {'Content-Type': mimeType + '; charset=utf-8'});
       fs.createReadStream(filename).pipe(res);
     }
     else if (status.isDirectory()) {
-      res.writeHead(403, {'Content-Type': 'text/html; charset=utf-8'});
-      res.end('<h1>' + req.url + ' 디렉토리 접근 권한 없음.</h1>');
+      // res.writeHead(403, {'Content-Type': 'text/html; charset=utf-8'});
+      // res.end('<h1>' + req.url + ' 디렉토리 접근 권한 없음.</h1>');
+      var err = new Error('디렉토리 접근 권한 없음.');
+      err.status = 403;
+      next(err);
     }
-    next();
+
   });
 }
 
