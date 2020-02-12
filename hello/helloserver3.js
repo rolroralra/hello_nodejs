@@ -47,15 +47,18 @@ function myRequestLisetner(req, res) {
 
   // 3. Stream Class 를 이용한 구현
   var fileStream = fs.createReadStream(filename, {highWaterMark: 1024*8});
+  // 3-1.
   fileStream.on('open', function(fd) {
     res.writeHead(200);
   });
 
+  // 3-2.
   fileStream.on('error', function() {
     res.writeHead(404);
     res.end('<h1>' + hello(req.url) + ' Not Found!</h1>');
   });
 
+  // 3-3.
   // fileStream.on('data', function(data) {
   //   console.log(data.length);
   //   res.write(data);

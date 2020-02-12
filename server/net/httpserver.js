@@ -15,6 +15,8 @@ var tcpServer = net.createServer(function(socket){
   // 3. Client Message Recieve & Send
   socket.on('data', function(data) {
     console.log(data.toString());
+
+    
     var req = parseHttpRequest(data.toString());
     console.log(req.method, req.url, req.httpVersion);
     console.log(req.headers['user-agent']);
@@ -33,6 +35,7 @@ var tcpServer = net.createServer(function(socket){
       }
       else {
         socket.write('HTTP/1.1 200 OK\r\n');
+        socket.write('Content-Type: text/html; charset=utf-8\r\n')
         socket.write('\r\n');
         socket.end(data);
       }

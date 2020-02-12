@@ -1,0 +1,13 @@
+[Wed Feb 12 2020 14:20:47 GMT+0900 (GMT+09:00)] 200 /index.html
+[Wed Feb 12 2020 14:20:48 GMT+0900 (GMT+09:00)] 200 /img/favicon.ico
+[Wed Feb 12 2020 14:21:06 GMT+0900 (GMT+09:00)] 404 /chat.html?username=test
+[Wed Feb 12 2020 14:21:36 GMT+0900 (GMT+09:00)] 200 /chat.html
+[Wed Feb 12 2020 14:23:42 GMT+0900 (GMT+09:00)] 200 /index.html
+[Wed Feb 12 2020 14:23:43 GMT+0900 (GMT+09:00)] 200 /img/favicon.ico
+[Wed Feb 12 2020 14:23:50 GMT+0900 (GMT+09:00)] 404 /chat.html?username=test
+[Wed Feb 12 2020 14:23:50 GMT+0900 (GMT+09:00)] 404 /favicon.ico
+[Wed Feb 12 2020 14:25:24 GMT+0900 (GMT+09:00)] 404 /chat.html?username=test
+[Wed Feb 12 2020 14:25:24 GMT+0900 (GMT+09:00)] 404 /favicon.ico
+[Wed Feb 12 2020 14:27:42 GMT+0900 (GMT+09:00)] 404 /chat.html?username=test
+[Wed Feb 12 2020 14:27:42 GMT+0900 (GMT+09:00)] 404 /favicon.ico
+[Wed Feb 12 2020 14:28:23 GMT+0900 (GMT+09:00)] 200 /chat.html?username=test

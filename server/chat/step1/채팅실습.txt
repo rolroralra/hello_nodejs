@@ -1,0 +1,4 @@
+step1{
+  - staticserver.js 에서 http 서버 구동, static 자원 응답, 로깅
+  - url parsing 후, 경로와 queryString 분리
+}

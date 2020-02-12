@@ -1,0 +1,14 @@
+step1{
+  - staticserver.js 에서 http 서버 구동, static 자원 응답, 로깅
+  - url parsing 후, 경로와 queryString 분리
+}
+
+step2{
+  - bin/www.js: http 서버 구동
+  - app.js: 추가
+}
+
+step3{
+  - middleware/static.js: static 자원 응답
+  - middleware/logger.js: 로깅
+}
