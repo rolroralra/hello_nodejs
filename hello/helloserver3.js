@@ -56,10 +56,11 @@ function myRequestLisetner(req, res) {
     res.end('<h1>' + hello(req.url) + ' Not Found!</h1>');
   });
 
-  fileStream.on('data', function(data) {
-    console.log(data.length);
-    res.write(data);
-  });
+  // fileStream.on('data', function(data) {
+  //   console.log(data.length);
+  //   res.write(data);
+  // });
+  fileStream.pipe(res);
 
   fileStream.on('close', function() {
     res.end();
