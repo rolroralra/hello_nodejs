@@ -2,13 +2,13 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>Node.js 게시판</title>
+<title><%= title %></title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body>
 	<header>
 		<div class="container">
-			<h1>게시판</h1>
+			<h1><게시판></h1>
 		</div>
 	</header>
 	<div class="container">
@@ -32,20 +32,15 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="active">
-							<td>2</td>
-							<td><a href="/board/2">Node.js 가이드</a></td>
-							<td>이영희</td>
-							<td>30</td>
-							<td>2099-07-27 21:33</td>
-						</tr>
-						<tr class="active">
-							<td>1</td>
-							<td><a href="/board/1">mongoDB 가이드</a></td>
-							<td>김철수</td>
-							<td>123</td>
-							<td>2099-07-20 11:25</td>
-						</tr>
+            <% list.forEach(function(article, i) { %>
+              <tr class="active">
+                <td><%= article._id %></td>
+                <td><a href="/board/<%= i%>"><%= article.title %></a></td>
+                <td><%= article.writer %></td>
+                <td><%= article.view %></td>
+                <td><%= article.regdate %></td>
+              </tr>
+            <% }); %>
 					</tbody>
 				</table>
 			</div>

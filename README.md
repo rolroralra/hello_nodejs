@@ -26,7 +26,9 @@ $ npm run start2
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "db": "c:\\MongoDB\\bin\\mongod --dbpath=c:\\MongoDB\\data",
+    "dbshell": "c:\\MongoDB\\bin\\mongo"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
