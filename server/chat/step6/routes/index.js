@@ -25,19 +25,22 @@ function chat(req, res) {
   // TODO: session객체에서 nickname을 꺼낸다.
   var nickname = req.session.userid;
 
-  // ejs: embedded JS       --> java
+  // ejs: embedded JS       --> Javascript가 embedded된 html파일 rendering Engine
   // jsp: Java Server Page  --> Java언어가 내부된 html파일 rendering Engine
-  var filename = path.join(views, 'chat.ejs');
-  ejs.renderFile(filename, {nickname: nickname, title: '채팅방'}, function(err, data) {
-    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-    res.end(data);
-  });
+  // Way1. Before Using ejs Render Engine
+  // var filename = path.join(views, 'chat.ejs');
+  // ejs.renderFile(filename, {nickname: nickname, title: '채팅방'}, function(err, data) {
+  //   res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+  //   res.end(data);
+  // });
+
+  // Way2. Using ejs Render Engine
+  res.render('chat', {nickname: nickname, title: '채팅방'});
 }
 
 function logout(req, res) {
   // TODO: session을 삭제
   req.session.destroy();
-
   
   res.writeHead(303, {'Location': '/'});
   res.end();

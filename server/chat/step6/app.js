@@ -39,8 +39,13 @@ const indexRouter = require('./routes/index');
 
 
 var app = connect();
+// Logger Middleware
 app.use(logger('dev'));
+
+// Static Resource Server Middleware
 app.use(static(path.join(__dirname, 'public')));
+
+// Session Middleware
 app.use(session({
   cookie: {maxAge: 1000*60*60},         // ms 단위
   secret: 'sometext',   
@@ -48,8 +53,38 @@ app.use(session({
   resave: false,              // Session이 수정되지 않으면 서버에 다시 저장하지 않음.
   saveUninitialized: false    // Session에 아무값도 없으면 Client Cookie를 전송하지 않음.
 }));
-app.use(nocache());
 
+// nocache Middleware
+app.use(nocache());   // Client Browser의 cache이용 못하게끔 Response Header에 추가
+                      // Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate
+                      // Expires: 0
+                      // Pragma: no-cache
+
+// ejs View Render Engine Middleware
+app.use(function(req, res, next) {
+  res.locals = {};
+  res.render = function(filename, data) {
+    const views = path.join(__dirname, 'views');
+    const filepath = path.join(views, filename + '.ejs');
+
+    if (!data) {
+      data = res.locals;
+    }
+
+    ejs.renderFile(filepath, data, function(err, result) {
+      if (err) {
+        next(err);
+      }
+      else {
+        res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+        res.end(result);
+      }
+    })
+  }
+  next();
+});
+
+// Custom Middleware (Router)
 app.use('/', indexRouter);
 
 // 404 Error Handling Middleware
@@ -63,13 +98,11 @@ app.use(function(req, res, next) {
 // Error Handling 전용 Middleware
 app.use(function(error, req, res, next) {
   error.status = error.status || 500;
-  var filename = path.join(__dirname, 'views', 'error.ejs');
-  // res.locals.message = error.message;
-  // res.locals.error = error;
-  ejs.renderFile(filename, {message: error.message, error: error}, function(err, data) {
-    res.writeHead(error.status, {'Content-Type': 'text/html; charset=utf-8'});
-    res.end(data);
-  });
+
+  res.locals.message = error.message;
+  res.locals.error = error;
+
+  res.render('error');
 });
 
 // Module Exports
