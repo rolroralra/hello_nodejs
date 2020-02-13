@@ -14,3 +14,42 @@ Web Server 개발시, 일반적으로 처리해야할 작업
 10. Security (Authentication, Authorization)
 11. Error Handling
 ...
+
+```txt
+step1{
+  - staticserver.js 에서 http 서버 구동, static 자원 응답, 로깅
+  - url parsing 후, 경로와 queryString 분리
+}
+
+step2{
+  - bin/www.js: http 서버 구동
+  - app.js: 추가
+}
+
+step3{
+  - middleware/static.js: static 자원 응답
+  - middleware/logger.js: 로깅
+}
+
+step4{
+  - connect 미들웨어 컨테이너 사용
+  - middleware를 connect 용으로 수정
+}
+
+step5{
+  - 동적인 자원 요청 처리 (routes 추가)
+  - 사용자 인증 처리
+}
+
+step6{
+  - session, cookie
+  - custom middleware 제거
+  - connect용 Middleware 교체
+  - morgan : logger
+  - serve-static : Static Resource Server
+  - express-session (Session)
+  - ejs : View Engine Render (Embedded JS)
+  - nocache : Cache 처리
+  - socket.io : WebSocket
+}
+```
