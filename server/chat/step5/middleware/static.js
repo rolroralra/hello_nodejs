@@ -19,9 +19,10 @@ function staticServer(req, res, next) {
 
   fs.stat(filename, function(err, status) {
     if (err) {
-      var err = new Error('Static Resource Read Failed!');
-      err.status = 500;
-      next(err);
+      // var err = new Error('Static Resource Read Failed!');
+      // err.status = 500;
+      // next(err);
+      next();
     }
     else if (status.isFile()) {
       res.writeHead(200, {'Content-Type': mimeType + '; charset=utf-8'});

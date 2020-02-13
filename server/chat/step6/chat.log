@@ -122,5 +122,3 @@
 [Thu Feb 13 2020 09:23:52 GMT+0900 (GMT+09:00)] 200 /login?username=test
 [Thu Feb 13 2020 09:23:52 GMT+0900 (GMT+09:00)] 200 /chat
 [Thu Feb 13 2020 09:34:10 GMT+0900 (GMT+09:00)] 200 /
-[Thu Feb 13 2020 09:58:49 GMT+0900 (GMT+09:00)] 200 /login?username=test
-[Thu Feb 13 2020 09:58:49 GMT+0900 (GMT+09:00)] 200 /chat

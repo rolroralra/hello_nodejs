@@ -8,8 +8,8 @@ function login(req, res) {
   var nickname = url.parse(req.url, true).query.username;
   if (nickname && nickname.trim() != '') {
     // TODO: session에 nickname 정보를 저장한다.
-
-
+    req.session.userid = nickname;
+    
     res.writeHead(303, {'location': '/chat'});
   }
   else {
@@ -21,8 +21,8 @@ function login(req, res) {
 // 채팅 화면으로 이동
 function chat(req, res) {
   // TODO: session객체에서 nickname을 꺼낸다.
+  var nickname = req.session.userid;
 
-  var nickname = url.parse(req.url, true).query.username;
   var filename = path.join(views, 'chat.html');
   fs.readFile(filename, function(err, data) {
     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
@@ -33,7 +33,7 @@ function chat(req, res) {
 
 function logout(req, res) {
   // TODO: session을 삭제
-
+  req.session.destory();
 
   
   res.writeHead(303, {'location': '/'});

@@ -18,6 +18,11 @@ step4{
   - middleware를 connect 용으로 수정
 }
 
-step5 {
+step5{
   - 동적인 자원 요청 처리 (routes 추가)
+  - 사용자 인증 처리
+}
+
+step6{
+  - session, cookie
 }
