@@ -1,6 +1,14 @@
 # hello_nodejs
 Hello Node.js
 
+```bash
+$ npm start
+# package.json 내에서 sciprts.start의 명령을 수행
+
+$ npm run start2
+# package.json 내에서 sciprts.start2 필드의 명령을 수행
+```
+
 Web Server 개발시, 일반적으로 처리해야할 작업
 1. Logging
 2. URL Encoding & Decoding
