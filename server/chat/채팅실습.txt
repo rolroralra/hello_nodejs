@@ -25,4 +25,12 @@ step5{
 
 step6{
   - session, cookie
+  - custom middleware 제거
+  - connect용 Middleware 교체
+  - morgan : logger
+  - serve-static : Static Resource Server
+  - express-session (Session)
+  - ejs : View Engine Render (Embedded JS)
+  - nocache : Cache 처리
+  - socket.io : WebSocket
 }

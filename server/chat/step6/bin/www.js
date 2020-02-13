@@ -10,3 +10,8 @@ server.on('listening', function(){
 })
 
 server.listen(80);
+
+
+// socket.io Server 구동
+var io = require('socket.io').listen(server);
+require('../chatServer')(io);

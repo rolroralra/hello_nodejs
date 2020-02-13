@@ -39,6 +39,7 @@ const indexRouter = require('./routes/index');
 
 
 var app = connect();
+
 // Logger Middleware
 app.use(logger('dev'));
 
@@ -48,7 +49,7 @@ app.use(static(path.join(__dirname, 'public')));
 // Session Middleware
 app.use(session({
   cookie: {maxAge: 1000*60*60},         // ms 단위
-  secret: 'sometext',   
+  secret: 'sometext',         // required option!
   rolling: true,              // 매 요청마다 Cookie 시간 초기화
   resave: false,              // Session이 수정되지 않으면 서버에 다시 저장하지 않음.
   saveUninitialized: false    // Session에 아무값도 없으면 Client Cookie를 전송하지 않음.

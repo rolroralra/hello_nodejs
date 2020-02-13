@@ -17,11 +17,47 @@
       <output><%=nickname%></output>
       <input class="form-control" type="text" size="80" autofocus>
       <button type="button" class="btn btn-success">메세지 전송</button>
-      <a href="/logout"><button type="submit" class="btn btn-danger">로그아웃</button></a>
+      <a href="/logout"><button class="btn btn-danger">로그아웃</button></a>
     </div>
   <% } else { %>
     <p><a href="/">로그인</a> 후 대화에 참여할 수 있습니다.</p>
   <% } %>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    // 1. WebSocket 서버 접속
+    var webSocket = io();
+    // var webSocket = io.connect('http://localhost');
+
+    // 2. 서버 메시지 수신하여 출력
+    var msgOut = document.querySelector('#panel');
+    webSocket.on('toclient', function(msg) {
+      msgOut.value += msg + '\n';
+      msgOut.scrollTop = msgOut.scrollHeight;
+    });
+    // 3. 로그인
+    webSocket.emit('login', '<%=nickname%>');
+
+    // 4. 서버로 메시지 전송
+    var msg = document.querySelector('input');
+    function send() {
+      webSocket.emit('chat', msg.value);
+      msg.value = '';
+      msg.focus();
+    }
+
+    // 5. Click Event 등록
+    var sendBtn = document.querySelector('button');
+    if (sendBtn) {
+      sendBtn.onclick = send;
+      msg.onkeydown = function(event) {
+        if (event.keyCode == 13) {
+          send();
+        }
+      };
+    }
+
+  </script>
 </body>
 </html>
 
