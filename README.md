@@ -53,3 +53,33 @@ step6{
   - socket.io : WebSocket
 }
 ```
+
+```bash
+$ express board --view=ejs
+
+   create : board\
+   create : board\public\
+   create : board\public\javascripts\
+   create : board\public\images\
+   create : board\public\stylesheets\
+   create : board\public\stylesheets\style.css
+   create : board\routes\
+   create : board\routes\index.js
+   create : board\routes\users.js
+   create : board\views\
+   create : board\views\error.ejs
+   create : board\views\index.ejs
+   create : board\app.js
+   create : board\package.json
+   create : board\bin\
+   create : board\bin\www
+
+   change directory:
+     > cd board
+
+   install dependencies:
+     > npm install
+
+   run the app:
+     > SET DEBUG=board:* & npm start
+```
