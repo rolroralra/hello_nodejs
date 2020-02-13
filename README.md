@@ -2,6 +2,13 @@
 Hello Node.js
 
 ```bash
+$ npm init
+
+$ npm install connect
+
+$ npm install -g nodemon
+
+
 $ npm start
 # package.json 내에서 sciprts.start의 명령을 수행
 
