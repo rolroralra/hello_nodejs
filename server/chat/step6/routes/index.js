@@ -2,6 +2,8 @@ const url = require('url');
 const fs = require('fs');
 const path = require('path');
 
+const ejs = require('ejs');
+
 const views = path.join(__dirname, '..', 'views');
 
 function login(req, res) {
@@ -10,10 +12,10 @@ function login(req, res) {
     // TODO: session에 nickname 정보를 저장한다.
     req.session.userid = nickname;
     
-    res.writeHead(303, {'location': '/chat'});
+    res.writeHead(303, {'Location': '/chat'});
   }
   else {
-    res.writeHead(303, {'location': '/'});
+    res.writeHead(303, {'Location': '/'});
   }
   res.end();
 }
@@ -23,20 +25,21 @@ function chat(req, res) {
   // TODO: session객체에서 nickname을 꺼낸다.
   var nickname = req.session.userid;
 
-  var filename = path.join(views, 'chat.html');
-  fs.readFile(filename, function(err, data) {
+  // ejs: embedded JS       --> java
+  // jsp: Java Server Page  --> Java언어가 내부된 html파일 rendering Engine
+  var filename = path.join(views, 'chat.ejs');
+  ejs.renderFile(filename, {nickname: nickname, title: '채팅방'}, function(err, data) {
     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-    data = data.toString().replace('<%=nickname%>', nickname);
     res.end(data);
   });
 }
 
 function logout(req, res) {
   // TODO: session을 삭제
-  req.session.destory();
+  req.session.destroy();
 
   
-  res.writeHead(303, {'location': '/'});
+  res.writeHead(303, {'Location': '/'});
   res.end();
 }
 

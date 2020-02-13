@@ -31,6 +31,8 @@ const connect = require('connect');
 const logger = require('morgan');
 const static = require('serve-static');
 const session = require('express-session');
+const ejs = require('ejs');
+const nocache = require('nocache');
 
 // Custom Module Loading
 const indexRouter = require('./routes/index');
@@ -40,14 +42,14 @@ var app = connect();
 app.use(logger('dev'));
 app.use(static(path.join(__dirname, 'public')));
 app.use(session({
-  cookie: {
-    maxAge: 1000*60*60,   // ms 단위
-    secret: 'sometext',   
-    rolling: true,        // 매 요청마다 Cookie 시간 초기화
-    resave: false,        // Session이 수정되지 않으면 서버에 다시 저장하지 않음.
-    saveUninitialized: false   // Session에 아무값도 없으면 Client Cookie를 전송하지 않음.
-  },
+  cookie: {maxAge: 1000*60*60},         // ms 단위
+  secret: 'sometext',   
+  rolling: true,              // 매 요청마다 Cookie 시간 초기화
+  resave: false,              // Session이 수정되지 않으면 서버에 다시 저장하지 않음.
+  saveUninitialized: false    // Session에 아무값도 없으면 Client Cookie를 전송하지 않음.
 }));
+app.use(nocache());
+
 app.use('/', indexRouter);
 
 // 404 Error Handling Middleware
@@ -60,12 +62,12 @@ app.use(function(req, res, next) {
 
 // Error Handling 전용 Middleware
 app.use(function(error, req, res, next) {
-  var filename = path.join(__dirname, 'views', 'error.html');
-  fs.readFile(filename, function(err, data) {
+  error.status = error.status || 500;
+  var filename = path.join(__dirname, 'views', 'error.ejs');
+  // res.locals.message = error.message;
+  // res.locals.error = error;
+  ejs.renderFile(filename, {message: error.message, error: error}, function(err, data) {
     res.writeHead(error.status, {'Content-Type': 'text/html; charset=utf-8'});
-    data = data.toString().replace('<%=message%>', error.message)
-                          .replace('<%=error.status%>', error.status)
-                          .replace('<%=error.stack%>', error.stack);
     res.end(data);
   });
 });
