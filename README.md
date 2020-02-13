@@ -1,19 +1,42 @@
 # hello_nodejs
 Hello Node.js
 
+# npm (Node Package Manager)
 ```bash
 $ npm init
+# package.json, package-lock.json file created 
 
 $ npm install connect
+# node_modules directory created
 
 $ npm install -g nodemon
-
+# install nodemon in root node_modules directory
 
 $ npm start
 # package.json 내에서 sciprts.start의 명령을 수행
 
 $ npm run start2
 # package.json 내에서 sciprts.start2 필드의 명령을 수행
+```
+
+# package.json
+```json
+{
+  "name": "board",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1"
+  }
+}
 ```
 
 Web Server 개발시, 일반적으로 처리해야할 작업
