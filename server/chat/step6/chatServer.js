@@ -12,7 +12,6 @@ function server(io) {
       io.emit('toclient', `${socket.nickname}: ${msg}`);
     });
   });
-
 }
 
 module.exports = server;
