@@ -70,7 +70,7 @@ module.exports = {
     // db.board.findOne({_id: no});
     db.board.findOneAndUpdate({_id: no}, {$inc: {view: 1}}, function(err, result) {
       // findOneAndUpdate   result의 경우,  current Value, updated Value 둘다 옴.
-      console.log('제목', result.value.title);
+      // console.log('제목', result.value.title);
       callback(result.value);
     });
 	},
