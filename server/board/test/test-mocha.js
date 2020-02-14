@@ -40,4 +40,65 @@ describe('# upper 함수 테스트', function() {
       });
     });
   });
+
+  
+});
+
+
+var newNo;
+// describe.only(...) << 이 Test만 진행
+describe.only('# 게시판 DB 테스트', function() {
+  // 사전 작업 정의
+  before(function(done) {
+    this.timeout(3500);
+    setTimeout(done, 3000);
+  });
+
+  var oldList;
+  before(function(done) {
+    model.list(function(newList) {
+        oldList = newList;
+        done();
+    })
+  });
+
+  // 사후 작업 정의
+  after(function() {
+    model.dbClose();
+  });
+
+  describe("등록", function() {
+    it('등록 요청', function(done) {
+      model.create(article, function(no) {
+        assert.equal(typeof no, 'number');
+        newNo = no;
+        // console.log(article);
+
+        done();
+      });
+    });
+    it('등록된 게시물 조회', function(done) {
+      model.show(newNo, function(newArticle) {
+        // console.log(article);
+        // assert.equal(newArticle.writer, article.writer);
+        // assert.equal(newArticle.title, article.title);
+        // assert.equal(newArticle.content, article.content);
+        assert.deepEqual(newArticle, article);
+        done();
+      })
+    });
+  });
+
+  describe("삭제", function() {
+    it('삭제 요청', function(done) {
+      model.remove(newNo, done);
+    });
+
+    it('목록 조회', function(done) {
+      model.list(function(newList) {
+        assert.deepEqual(newList, oldList);
+        done();
+      });
+    });
+  });
 });

@@ -1,1 +1,37 @@
 var article = {writer: '좀비', title: '좀비가 등록함.', content: '좀비가 등록한 게시물'};
+
+// Headless Browser (zombie module)
+var Browser = require('zombie');
+
+Browser.localhost('localhost', 80);
+
+describe('게시판 테스트', function() {
+  describe('게시판 메인 페이지 접속', function() {
+    var browser = new Browser();
+    before(function(done) {
+      browser.visit('/', done);
+    });
+
+    it('접속 성공', function() {
+      // 응답 성공시 받는 응답 상태 코드 2xx, 3xx 확인
+      browser.assert.success();
+    });
+    it('목록 화면', function() {
+      browser.assert.text('header h1', '게시물 목록');
+    });
+  });
+  describe('게시물 등록', function() {
+    it('접속 성공', function() {
+
+    });
+    it('등록 화면', function() {
+      // browser.assert.text('header h1', '글쓰기');
+    });
+    it('등록 요청', function() {
+      
+    });
+    it('등록 결과 화면', function() {
+      // browser.assert.text('header h1', '등록 결과');
+    });
+  });
+});

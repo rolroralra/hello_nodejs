@@ -84,6 +84,6 @@ module.exports = {
 	// 게시물 삭제
 	remove: function(no, callback){
     // TODO: DB에서 no 게시물을 삭제한 후 콜백 호출
-    db.board.remove({_id: no}, callback);
+    db.board.deleteOne({_id: no}, callback);
 	}
 };
