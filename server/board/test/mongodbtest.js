@@ -31,6 +31,15 @@ var b2 = {
 		regdate: '2099-06-21 12:54:32'
 };
 
+
+// MongoDB
+// NoSQL DB
+// Collection
+// Document
+// Board
+
+
+
 // 현재 DB 삭제
 db.dropDatabase();
 
@@ -71,16 +80,19 @@ db.board.remove({_id: 1});
 
 
 // sequence용 데이터 추가
+db.seq.insert({index: 1});
 
 
 // sequence 조회 및 업데이트
-
+db.seq.findOneAndUpdate({}, {$inc: {index: 1}});
 
 // board DB 초기화
 use boardDB;
 db.dropDatabase();
 db.board.insert([b1, b2]);
-db.seq.insert({no: 3});
+db.seq.insert({index: 3});
+db.board.find();
+db.seq.find();
 
 
 

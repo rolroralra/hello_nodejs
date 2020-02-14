@@ -37,21 +37,20 @@ router.post('/board/new', function(req, res, next) {
 
 // 상세 조회
 router.get('/board/:no', function(req, res, next) {
-  var no = req.params.no;
+  var no = parseInt(req.params.no);
 
-  model.show(parseInt(no), function(article) {
+  model.show(no, function(article) {
     res.render('board/view', { title: '내용 조회', article: article });
   });
 });
 
 // 삭제
 router.delete('/board/:no', function(req, res, next) {
-  var no = req.params.no;
+  var no = parseInt(req.params.no);
 
-  model.delete(parsetInt(no), function() {
-
+  model.remove(no, function() {
+    res.redirect('/');
   });
-  res.redirect('/');
 });
 
 module.exports = router;
