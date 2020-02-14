@@ -64,7 +64,6 @@ module.exports = {
     // db.board.findOne({_id: no});
     db.board.findOneAndUpdate({_id: no}, {$inc: {view: 1}}, function(err, result) {
       // findOneAndUpdate   result의 경우,  current Value, updated Value 둘다 옴.
-      console.log(result.value);
       callback(result.value);
     });
 	},

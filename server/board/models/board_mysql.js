@@ -2,7 +2,7 @@ var mysql = require('mysql');
 
 var pool = mysql.createPool({
   connectionLimit: 10,
-  host: 'localhost',
+  host: '10.4.5.100',
 	user: 'node',
 	password: 'node',
 	database: 'board'
@@ -19,20 +19,27 @@ var sql = {
 module.exports = {
 	// 게시물 목록 조회
 	list: function(cb){
-		
+		pool.query(sql.list, function(err, result) {
+      cb(result);
+    });
 	},
 	// 게시물 상세 조회
 	show: function(no, cb){
-		
+		pool.query(sql.show, [no], function(err, result) {
+      pool.query(sql.incView, [no]);
+      cb(result[0]);
+    });
 	},
 	// 게시물 등록
 	create: function(article, cb){
 		article.regdate = require('date-format').asString('yyyy-MM-dd hh:mm:ss', new Date());
-		
+		pool.query(sql.create, article, function(err, result) {
+      cb(result.insertId);
+    });
 	},
 	// 게시물 삭제
 	remove: function(no, cb){
-		
+		pool.query(sql.remove, [], cb);
 	}
 };
 
