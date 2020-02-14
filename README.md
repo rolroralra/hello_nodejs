@@ -65,7 +65,7 @@ $ nodemon www.js
 }
 ```
 # http Module, connect Module
-Web Server 개발시, 일반적으로 처리해야할 작업
+- Web Server 개발시, 일반적으로 처리해야할 작업
 1. Logging
 2. URL Encoding & Decoding
 3. POST Method HTTP Request's Body Parsing
@@ -78,6 +78,7 @@ Web Server 개발시, 일반적으로 처리해야할 작업
 10. Security (Authentication, Authorization)
 11. Error Handling
 ...
+
 
 ```txt
 step1{
@@ -119,6 +120,7 @@ step6{
 ```
 
 # Express Framework
+- express framework initialization
 ```bash
 $ express board --view=ejs
 
@@ -150,6 +152,7 @@ $ express board --view=ejs
 ```
 
 # TDD (Test Driven Development) by mocah Module
+- mocha Module Install & Execute
 ```bash
 $ nps i -g mocha
 
@@ -157,6 +160,7 @@ $ mocha testXXX.js
 
 ```
 
+- Test Javascript Code using mocha module 
 ```javascript
 var assert = require('assert');
 var upper = require('./upper');
