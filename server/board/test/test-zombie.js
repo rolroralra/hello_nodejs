@@ -21,17 +21,27 @@ describe('게시판 테스트', function() {
     });
   });
   describe('게시물 등록', function() {
-    it('접속 성공', function() {
-
+    var browser = new Browser();
+    before(function(done) {
+      browser.visit('/', done);
+    });
+    
+    it('접속 성공', function(done) {
+      browser.visit('/board/new', done);
     });
     it('등록 화면', function() {
-      // browser.assert.text('header h1', '글쓰기');
+      browser.assert.text('header h1', '글쓰기');
     });
-    it('등록 요청', function() {
-      
+    it('등록 요청', function(done) {
+      browser.fill('writer', article.writer);
+      browser.fill('title', article.title);
+      browser.fill('content', article.content);
+
+      browser.pressButton('#regist', done);
     });
     it('등록 결과 화면', function() {
-      // browser.assert.text('header h1', '등록 결과');
+      browser.assert.success();
+      browser.assert.text('header h1', '등록 결과');
     });
   });
 });
