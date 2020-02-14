@@ -22,25 +22,41 @@ $ npm run start2
 # package.json
 ```json
 {
-  "name": "board",
-  "version": "0.0.0",
-  "private": true,
+  "name": "nodelab",
+  "version": "1.0.0",
+  "description": "Hello Node.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon ./bin/www",
-    "db": "c:\\MongoDB\\bin\\mongod --dbpath=c:\\MongoDB\\data",
-    "dbshell": "c:\\MongoDB\\bin\\mongo"
+    "start": "nodemon ./hello/helloserver.js",
+    "start2": "nodemon ./hello/helloserver2.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolroralra/hello_nodejs.git"
+  },
+  "author": "rolroralra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolroralra/hello_nodejs/issues"
+  },
+  "homepage": "https://github.com/rolroralra/hello_nodejs#readme",
   "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "ejs": "~2.6.1",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "clog": "^0.1.6",
+    "connect": "^3.7.0",
+    "ejs": "^3.0.1",
+    "express-session": "^1.17.0",
+    "mime": "^2.4.4",
+    "morgan": "^1.9.1",
+    "nocache": "^2.1.0",
+    "node-static": "^0.7.11",
+    "serve-static": "^1.14.1",
+    "socket.io": "^2.3.0",
+    "tracer": "^1.0.2"
   }
 }
 ```
-
+# http Module, connect Module
 Web Server 개발시, 일반적으로 처리해야할 작업
 1. Logging
 2. URL Encoding & Decoding
@@ -94,6 +110,7 @@ step6{
 }
 ```
 
+# Express Framework
 ```bash
 $ express board --view=ejs
 
@@ -122,4 +139,12 @@ $ express board --view=ejs
 
    run the app:
      > SET DEBUG=board:* & npm start
+```
+
+# TDD (Test Driven Development)
+```bash
+$ nps i -g mocha
+
+$ mocha testXXX.js
+
 ```
