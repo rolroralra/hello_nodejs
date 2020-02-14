@@ -23,6 +23,7 @@ app.use('/board', function(req, res, next) {
   console.log('method', req.method);
   console.log('body', req.body);
   console.log('cookies', req.cookies);
+  console.log('content-type', req.headers["content-type"]);
   // console.log('req.headers.cookie', req.headers.cookie);
   console.log('-------------------------------')
   next();

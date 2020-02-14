@@ -31,7 +31,7 @@ const dbName = 'boardDB';
 var db, dbClient;
 
 // Use connect method to connect to the server
-MongoClient.connect(url, { useUnifiedTopology: true }, function(err, client) {
+MongoClient.connect(url, { useUnifiedTopology: true, poolSize: 20 }, function(err, client) {
   assert.equal(null, err);
   console.log("Connected successfully to server");
  
@@ -51,10 +51,16 @@ module.exports = {
     dbClient.close();
   },
 	// 게시물 목록 조회
-	list: function(callback){
+	list: function(page, callback){
+    page = page || 1;
+    const defaultArticleCoungInPage = 10;
     // TODO: DB에서 목록 조회한 후 결과를 콜백으로 전달
-    db.board.find({}, {content: 0}).sort({_id: -1}).toArray(function(err, result) {
-      callback(result);
+    db.board.find({}, {content: 0})
+            .skip(defaultArticleCoungInPage * (page - 1))
+            .limit(defaultArticleCoungInPage)
+            .sort({_id: -1})
+            .toArray(function(err, result) {
+                      callback(result);
     });
 
 	},
@@ -64,6 +70,7 @@ module.exports = {
     // db.board.findOne({_id: no});
     db.board.findOneAndUpdate({_id: no}, {$inc: {view: 1}}, function(err, result) {
       // findOneAndUpdate   result의 경우,  current Value, updated Value 둘다 옴.
+      console.log('제목', result.value.title);
       callback(result.value);
     });
 	},

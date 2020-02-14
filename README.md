@@ -121,7 +121,7 @@ step6{
 
 # Express Framework
 - express framework initialization
-```bash
+```cmd
 $ express board --view=ejs
 
    create : board\
@@ -206,4 +206,36 @@ describe('# upper 함수 테스트', function() {
   });
 });
 
+```
+
+- pm2 Module (Production Process Manager for Node.js Applications)
+```bash
+$ npm i -g pm2
+
+# pm2를 통한 app 가동
+$ pm2 start --name board ./bin/www
+$ pm2 start board ./bin/www
+
+# pm2 모니터링
+$ pm2 monit
+
+# pm2 로그 확인
+$ pm2 logs
+
+# pm2 서버 가동 중지
+$ pm2 stop board
+
+# pm2 가동 서버 목록
+$ pm2 list
+
+# pm2 서버 재기동
+$ pm2 restart board
+$ pm2 restart all
+
+# pm2 서버 삭제
+$ pm2 delete board 
+$ pm2 delete all
+
+# pm2 클러스터링 서버로 가동
+$ pm2 start -i 10 --name board ./bin/www
 ```
